@@ -1,0 +1,91 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+// Default theme colors
+$theme-colors: (
+  "coolblack": #090a0b,
+  "spacegrey": #353535,
+  "snowwhite": #ffffff,
+);
+
+// Default brand colors
+$brand-colors: (
+  "medpurple": #903fff,
+  "greatgold": #f2cb05,
+  "greenblue": #389092,
+);
+
+$theme-name: "{{ site.theme_color }}";
+$brand-name: "{{ site.brand_color }}";
+$theme-color: map-get($theme-colors, "snowwhite");
+$brand-color: map-get($brand-colors, "medpurple");
+
+@if map-has-key($theme-colors, $theme-name) {
+  $theme-color: map-get($theme-colors, $theme-name);
+} @else if str-index($theme-name, "#") == 1 {
+  $theme-color: {{ site.theme_color | default: '#ffffff' }};
+}
+
+@if map-has-key($brand-colors, $brand-name) {
+  $brand-color: map-get($brand-colors, $brand-name);
+} @else if str-index($brand-name, "#") == 1 {
+  $brand-color: {{ site.brand_color | default: '#903fff' }};
+}
+
+$content-width: {{ site.content_width | default: '920px' }};
+
+@import "yat";
+
+.site-brand {
+  line-height: $header-height;
+  margin-right: 50px;
+
+  .site-brand-inner {
+    @include relative-font-size(1.65);
+    font-weight: $base-font-weight * 1.5;
+    letter-spacing: -1px;
+    transition: 0.1s filter color;
+
+  }
+  .site-favicon {
+    transform: translateY(-4px);
+  }
+}
+
+#projectname a, #projectname a:link, #projectname a:active, #projectname a:visited, #projectname a:focus, #projectname a:hover{
+    text-transform: uppercase;
+    font-size: 23.1px;
+    font-family: Helvetica, Arial, Oswald, sans-serif!important;
+    font-weight: 600!important;
+    letter-spacing: -1px!important;
+    color: $brand-color!important;
+    text-decoration: none;
+}
+
+#title-area {
+    flex-grow: 5!important;
+    margin-left: 60px!important;
+    padding-left: 0px!important;
+}
+
+.custom-top-links a.selected {
+  text-decoration: underline;
+  text-underline-offset: 0.4em;
+}
+
+.navpath {
+  border-top: 1px solid #dedede;
+}
+
+.footer-col ul li{
+  font-size: 12px;
+}
+
+.brand .brand-name{
+  font-weight: 400;
+}
+
+.brand .brand-slogan{
+  font-weight: 200;
+}
