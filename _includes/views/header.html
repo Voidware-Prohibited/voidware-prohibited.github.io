@@ -1,17 +1,18 @@
-
 {%- include functions.html func='get_banner' -%}
 
-{%- include functions.html func='log' level='debug' msg='Get header_transparent value' -%}
+{%- assign name = 'banner_html' -%}
+{%- include functions.html func='get_value' -%}
+{%- assign banner = return -%}
+
 {%- assign name = 'header_transparent' -%}
 {%- include functions.html func='get_value' default=true -%}
 {%- assign header_transparent = return -%}
 
 {%- if has_banner and header_transparent -%}
-  {%- assign header_transparent_class = "site-header-transparent" -%}
+{%- assign header_transparent_class = "site-header-transparent" -%}
 {%- endif -%}
 
 <header class="site-header {{ header_transparent_class }}" role="banner">
-
   <div class="wrapper">
     <div class="site-header-inner">
       {%- assign default_paths = site.pages | where: "dir", "/" | map: "path" -%}
@@ -21,64 +22,65 @@
         {%- include views/site-brand.html -%}
       </span>
 
-      {%- if page_paths -%}
-        <nav class="site-nav">
-          <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-          <label for="nav-trigger">
-            <span class="menu-icon">
-              <svg viewBox="0 0 18 15" width="18px" height="15px">
-                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-              </svg>
-            </span>
-          </label>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
 
-          <div class="trigger">
-            <ul class="yat-nav-menu">
-              {% for item in site.data.navigation %}
-              <li class="yat-nav-item {% if item.subitems %}has-dropdown{% endif %}">
-                <a class="page-link" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-                {% if item.subitems %}
-                <ul class="dropdown">
-                  {% for subitem in item.subitems %}
-                  <li class="yat-nav-item {% if subitem.subitems %}has-dropdown{% endif %}">
-                    <a class="page-link" href="{{ subitem.url | relative_url }}">{{ subitem.title }}</a>
-                    {% if subitem.subitems %}
-                    <ul class="dropdown sub-dropdown">
-                      {% for third in subitem.subitems %}
-                      <li><a class="page-link" href="{{ third.url | relative_url }}">{{ third.title }}</a></li>
-                      {% endfor %}
-                    </ul>
-                    {% endif %}
-                  </li>
-                  {% endfor %}
-                </ul>
-                {% endif %}
-              </li>
-              {% endfor %}
-            </ul>
-
-            {%- for path in page_paths -%}
-              {%- assign my_page = site.pages | where: "path", path | first -%}
-              {%- if my_page.title -%}
-              <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | upcase | escape }}</a>
+        <div class="trigger">
+          <ul class="yat-nav-list">
+            {%- for item in site.data.navigation -%}
+            <li class="yat-nav-item{% if item.sublinks %} has-dropdown{% endif %}">
+              <a class="page-link" href="{{ item.url | relative_url }}">
+                <span>{{ item.title | escape }}</span>
+                {%- if item.sublinks -%}
+                <i class="fas fa-angle-down yat-caret" aria-hidden="true"></i>
+                {%- endif -%}
+              </a>
+              {%- if item.sublinks -%}
+              <ul class="yat-dropdown">
+                {%- for subitem in item.sublinks -%}
+                <li class="yat-dropdown-item{% if subitem.sublinks %} has-dropdown{% endif %}">
+                  <a class="page-link" href="{{ subitem.url | relative_url }}">
+                    <span>{{ subitem.title | escape }}</span>
+                    {%- if subitem.sublinks -%}
+                    <i class="fas fa-angle-right yat-caret" aria-hidden="true"></i>
+                    {%- endif -%}
+                  </a>
+                  {%- if subitem.sublinks -%}
+                  <ul class="yat-dropdown yat-sub-dropdown">
+                    {%- for grandsub in subitem.sublinks -%}
+                    <li class="yat-dropdown-item">
+                      <a class="page-link" href="{{ grandsub.url | relative_url }}">
+                        <span>{{ grandsub.title | escape }}</span>
+                      </a>
+                    </li>
+                    {%- endfor -%}
+                  </ul>
+                  {%- endif -%}
+                </li>
+                {%- endfor -%}
+              </ul>
               {%- endif -%}
+            </li>
             {%- endfor -%}
-            {%- include extensions/theme-toggle.html -%}
+          </ul>
 
-            {%- assign name = 'translate_langs' -%}
-            {%- include functions.html func='get_value' -%}
-            {%- assign translate_langs = return -%}
-            {%- if translate_langs.size > 0 -%}
-              {%- assign name = 'lang' -%}
-              {%- include functions.html func='get_value' default='en' -%}
-              {%- assign lang = return -%}
-              <span class="page-link">
-                  {%- include extensions/google-translate.html -%}
-              </span>
-            {%- endif -%}
-          </div>
-        </nav>
-      {%- endif -%}
+          {%- assign name = 'translate_langs' -%}
+          {%- include functions.html func='get_value' -%}
+          {%- assign translate_langs = return -%}
+          {%- if translate_langs.size > 0 -%}
+          <span class="page-link">
+              {%- include extensions/google-translate.html -%}
+            </span>
+          {%- endif -%}
+        </div>
+      </nav>
     </div>
   </div>
 </header>
@@ -90,22 +92,18 @@
 
     function storeScrollData() {
       var y = getScrollPos().y;
-
       {%- if banner and header_transparent -%}
       documentElement.setAttribute("data-header-transparent", "");
       {%- endif -%}
-
       var scrollStatus = "";
-
       if (y <= 0) {
         scrollStatus = "top";
       } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
         scrollStatus = "bottom";
       } else {
-        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        var isScrollDown = (y - lastScrollY > 0) && y > 0;
         scrollStatus = isScrollDown ? "down" : "up";
       }
-
       lastScrollY = y;
       documentElement.setAttribute("data-scroll-status", scrollStatus);
     }
@@ -113,46 +111,38 @@
     window.addEventListener('scroll', function(e) {
       storeScrollData();
     });
-
     storeScrollData();
-  }
-  document.addEventListener('DOMContentLoaded', initHeader);
-</script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const navTrigger = document.getElementById('nav-trigger');
-    const dropdownParents = document.querySelectorAll('.yat-nav-menu .has-dropdown > .page-link');
+    /* Multilevel menu: mobile accordion + desktop outside-click reset */
+    var navTrigger = document.getElementById('nav-trigger');
+    var dropdownLinks = document.querySelectorAll('.yat-nav-list .has-dropdown > .page-link');
 
-    dropdownParents.forEach(function (link) {
-      link.addEventListener('click', function (e) {
+    dropdownLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
         if (window.innerWidth <= 800) {
-          const parentLi = this.parentElement;
+          var parentLi = this.parentElement;
           if (!parentLi.classList.contains('is-open')) {
             e.preventDefault();
-            // Close sibling dropdowns at the same level
-            const siblings = parentLi.parentElement.children;
-            for (let i = 0; i < siblings.length; i++) {
-              if (siblings[i] !== parentLi) {
-                siblings[i].classList.remove('is-open');
+            Array.prototype.forEach.call(parentLi.parentElement.children, function(sibling) {
+              if (sibling !== parentLi) {
+                sibling.classList.remove('is-open');
               }
-            }
+            });
             parentLi.classList.add('is-open');
           }
         }
       });
     });
 
-    // Reset open accordions when YAT's hamburger menu closes
     if (navTrigger) {
-      navTrigger.addEventListener('change', function () {
+      navTrigger.addEventListener('change', function() {
         if (!this.checked) {
-          document.querySelectorAll('.yat-nav-menu .has-dropdown.is-open').forEach(function (el) {
+          document.querySelectorAll('.yat-nav-list .has-dropdown.is-open').forEach(function(el) {
             el.classList.remove('is-open');
           });
         }
       });
     }
-  });
+  }
+  window.addEventListener('load', initHeader);
 </script>
-
