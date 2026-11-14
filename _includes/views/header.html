@@ -56,6 +56,7 @@
               </li>
               {% endfor %}
             </ul>
+
             {%- for path in page_paths -%}
               {%- assign my_page = site.pages | where: "path", path | first -%}
               {%- if my_page.title -%}
@@ -117,3 +118,41 @@
   }
   document.addEventListener('DOMContentLoaded', initHeader);
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navTrigger = document.getElementById('nav-trigger');
+    const dropdownParents = document.querySelectorAll('.yat-nav-menu .has-dropdown > .page-link');
+
+    dropdownParents.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (window.innerWidth <= 800) {
+          const parentLi = this.parentElement;
+          if (!parentLi.classList.contains('is-open')) {
+            e.preventDefault();
+            // Close sibling dropdowns at the same level
+            const siblings = parentLi.parentElement.children;
+            for (let i = 0; i < siblings.length; i++) {
+              if (siblings[i] !== parentLi) {
+                siblings[i].classList.remove('is-open');
+              }
+            }
+            parentLi.classList.add('is-open');
+          }
+        }
+      });
+    });
+
+    // Reset open accordions when YAT's hamburger menu closes
+    if (navTrigger) {
+      navTrigger.addEventListener('change', function () {
+        if (!this.checked) {
+          document.querySelectorAll('.yat-nav-menu .has-dropdown.is-open').forEach(function (el) {
+            el.classList.remove('is-open');
+          });
+        }
+      });
+    }
+  });
+</script>
+

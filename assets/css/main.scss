@@ -94,28 +94,43 @@ $content-width: {{ site.content_width | default: '920px' }};
   background-color: rgba(255,255,255,1)!important;
   transition: height 0.2s;
 }
+/* 1. Allow dropdowns to escape the header bar */
+.site-header {
+  overflow: visible !important;
+}
 
-/* YAT Menu*/
+.site-nav {
+  position: relative;
+  z-index: 999;
+}
 
-/* Desktop: Keep menu horizontal when NOT in hamburger mode */
+/* 2. Reset list styles across all viewports */
+.yat-nav-menu,
+.yat-dropdown {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. HIDE ALL SUBLEVELS BY DEFAULT (Fixes visible sublevels) */
+.yat-dropdown {
+  display: none !important;
+}
+
+/* =========================================================
+   DESKTOP: Horizontal Bar + Hover Flyouts (> 800px)
+   ========================================================= */
 @media screen and (min-width: 801px) {
-  .site-nav {
-    display: flex;
-    align-items: center;
-  }
-
+  .site-nav,
   .site-nav .trigger {
     display: flex !important;
     align-items: center;
   }
 
   .yat-nav-menu {
-    display: flex;
-    flex-direction: row;
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
     gap: 20px;
   }
 
@@ -125,113 +140,142 @@ $content-width: {{ site.content_width | default: '920px' }};
     align-items: center;
   }
 
-  /* Override YAT's default .page-link margins so items align cleanly */
   .yat-nav-item > .page-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     margin: 0 !important;
+    padding: 8px 4px;
     white-space: nowrap;
   }
-}
 
-/* Mobile: Stack vertically inside YAT's hamburger menu */
-@media screen and (max-width: 800px) {
-  .yat-nav-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  /* Caret indicator for items with children */
+  .has-dropdown > .page-link::after {
+    content: "▾";
+    font-size: 0.75em;
+    opacity: 0.75;
   }
 
-  .yat-nav-item {
-    width: 100%;
+  .yat-dropdown .has-dropdown > .page-link::after {
+    content: "▸";
+    margin-left: auto;
+    padding-left: 12px;
   }
-}
 
+  /* Level 2 Dropdown Box */
+  .yat-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    padding: 6px 0 !important;
+    background-color: #ffffff;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    z-index: 1000;
+  }
 
-.yat-nav-menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-}
+  /* Level 3+ Side Flyout */
+  .yat-sub-dropdown {
+    top: -6px;
+    left: 100%;
+  }
 
-.yat-nav-item {
-  position: relative;
-}
-
-/* Dropdown container */
-.yat-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 180px;
-  list-style: none;
-  margin: 0;
-  padding: 8px 0;
-  background-color: var(--background-color, #ffffff);
-  border: 1px solid rgba(128, 128, 128, 0.25);
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
-}
-
-/* Third-level flyout */
-.yat-sub-dropdown {
-  top: 0;
-  left: 100%;
-}
-
-.yat-dropdown-item {
-  position: relative;
-  display: block;
-  text-align: left;
-
-  .page-link {
+  .yat-dropdown-item {
+    position: relative;
     display: block;
-    padding: 6px 16px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .yat-dropdown-item > .page-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 16px !important;
     margin: 0 !important;
     line-height: 1.4 !important;
     white-space: nowrap;
   }
 
-  &:hover > .page-link {
+  .yat-dropdown-item > .page-link:hover {
     background-color: rgba(128, 128, 128, 0.12);
   }
+
+  /* Reveal on Hover or Keyboard Focus */
+  .has-dropdown:hover > .yat-dropdown,
+  .has-dropdown:focus-within > .yat-dropdown {
+    display: block !important;
+  }
 }
 
-/* Show on hover (Desktop) */
-.has-dropdown:hover > .yat-dropdown {
-  display: block;
-}
-
-/* Dark mode support matching YAT's html[data-theme="dark"] */
-html[data-theme="dark"] .yat-dropdown {
-  background-color: #222222;
-  border-color: #383838;
-}
-
-/* Mobile responsive override inside YAT's .site-nav .trigger */
+/* =========================================================
+   MOBILE: Accordion Inside YAT's #nav-trigger Drawer (<= 800px)
+   ========================================================= */
 @media screen and (max-width: 800px) {
   .yat-nav-menu {
-    display: block;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch;
+    width: 100%;
   }
 
-  .yat-dropdown,
-  .yat-sub-dropdown {
-    position: static;
-    box-shadow: none;
-    border: none;
-    padding-left: 16px;
+  .yat-nav-item,
+  .yat-dropdown-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .yat-nav-item > .page-link,
+  .yat-dropdown-item > .page-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+  }
+
+  .has-dropdown > .page-link::after {
+    content: "▾";
+    font-size: 0.85em;
+    transition: transform 0.2s ease;
+  }
+
+  .has-dropdown.is-open > .page-link::after {
+    transform: rotate(180deg);
+  }
+
+  /* Nested levels indent cleanly when toggled open */
+  .yat-dropdown {
+    position: static !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-left: 2px solid rgba(128, 128, 128, 0.3) !important;
+    margin-left: 14px !important;
+    padding-left: 6px !important;
     background: transparent !important;
   }
 
-  .has-dropdown > .yat-dropdown {
-    display: block;
+  .has-dropdown.is-open > .yat-dropdown {
+    display: block !important;
   }
 }
+
+/* =========================================================
+   YAT DARK MODE SUPPORT (Matches YAT's data-theme="dark")
+   ========================================================= */
+html[data-theme="dark"] .yat-dropdown {
+  background-color: #1e1e1e;
+  border-color: #383838;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+html[data-theme="dark"] .yat-dropdown-item > .page-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
 
