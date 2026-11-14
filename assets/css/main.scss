@@ -90,10 +90,6 @@ $content-width: {{ site.content_width | default: '920px' }};
   font-weight: 200;
 }
 
----
----
-@import "yat";
-
 /* =========================================================
    BASE MENU & OVERFLOW FIXES
    ========================================================= */
