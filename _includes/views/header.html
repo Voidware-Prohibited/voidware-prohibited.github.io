@@ -33,6 +33,29 @@
           </label>
 
           <div class="trigger">
+            <ul class="yat-menu">
+              {% for item in site.data.navigation %}
+              <li class="menu-item {% if item.subitems %}has-dropdown{% endif %}">
+                <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% if item.subitems %}
+                <ul class="dropdown">
+                  {% for subitem in item.subitems %}
+                  <li class="menu-item {% if subitem.subitems %}has-dropdown{% endif %}">
+                    <a href="{{ subitem.url | relative_url }}">{{ subitem.title }}</a>
+                    {% if subitem.subitems %}
+                    <ul class="dropdown sub-dropdown">
+                      {% for third in subitem.subitems %}
+                      <li><a href="{{ third.url | relative_url }}">{{ third.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
             {%- for path in page_paths -%}
               {%- assign my_page = site.pages | where: "path", path | first -%}
               {%- if my_page.title -%}

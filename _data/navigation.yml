@@ -1,0 +1,16 @@
+- title: ./
+  url: /
+- title: FOSS
+  url: "#"
+  subitems:
+    - title: Target Vector
+      url: /guides/
+      subitems:
+        - title: Jekyll Setup
+          url: /guides/jekyll-setup/
+        - title: Theme Styling
+          url: /guides/styling/
+    - title: Tutorials
+      url: /tutorials/
+- title: About
+  url: /about/
