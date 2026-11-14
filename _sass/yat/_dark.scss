@@ -74,7 +74,7 @@ html[data-theme="dark"]  {
 
     @include media-query($on-laptop) {
       .menu-icon > svg {
-          fill: rgba($dark-text-color, 80%);
+          fill: rgba($white-color, 80%);
       }
 
       .site-nav input:checked ~ .trigger {

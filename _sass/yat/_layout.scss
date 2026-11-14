@@ -28,7 +28,7 @@ html {
 
           .menu-icon {
             > svg {
-              fill: $white-color;
+              fill: $black-color;
             }
           }
         }
@@ -159,7 +159,7 @@ html {
       text-align: center;
 
       > svg {
-        fill: $dark-text-color;
+        fill: rgba($black-color, 80%);
         transition: 0.1s fill;
       }
     }
