@@ -1,8 +1,23 @@
 - title: ./
   url: /
+- title: NFO
+  url: "#"
+  subitems:
+    - title: About
+      url: /about/
+    - title: Consultation
+      url: /consultation/
+    - title: Live Experiences
+      url: /live/
+    - title: Development
+      url: /dev/
+    - title: Operations
+      url: /operations/
 - title: FOSS
   url: "#"
   subitems:
+    - title: Target Vector
+    - url: /tutorials/
     - title: Target Vector
       url: /guides/
       subitems:
@@ -12,5 +27,19 @@
           url: /guides/styling/
     - title: Tutorials
       url: /tutorials/
-- title: About
-  url: /about/
+- title: ASSETS
+  url: "#"
+  subitems:
+    - title: Modular Buildings
+      url: /modular/
+    - title: Modular Streets
+      url: /modular/
+- title: TUTS
+  url: "#"
+  subitems:
+    - title: Unreal Engine
+      url: /modular/
+    - title: Ableton Live/MAX 4 Live
+      url: /modular/
+- title: Chrome Ronin
+  url: https://chromeronin.voidwarex.com
