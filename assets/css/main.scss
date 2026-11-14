@@ -111,8 +111,8 @@ $content-width: {{ site.content_width | default: '920px' }};
    DESKTOP (> 800px): Horizontal Bar + Working Hover Submenus
    ========================================================= */
 @media screen and (min-width: 801px) {
-  .site-nav .nav-trigger,
-  .site-nav label[for="nav-trigger"] {
+  .nav-trigger-wrapper .nav-trigger,
+  .nav-trigger-wrapper label[for="nav-trigger"] {
     display: none !important;
   }
 
