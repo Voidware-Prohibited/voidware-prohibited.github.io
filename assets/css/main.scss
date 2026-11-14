@@ -91,7 +91,7 @@ $content-width: {{ site.content_width | default: '920px' }};
 }
 
 .page-banner {
-  background-color: rgba(1,1,1,1)!important;
+  background-color: rgba(255,255,255,1)!important;
   transition: height 0.2s;
 }
 

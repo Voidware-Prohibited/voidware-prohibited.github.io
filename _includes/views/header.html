@@ -33,7 +33,7 @@
           </label>
 
           <div class="trigger">
-            <ul class="yat-menu">
+            <ul class="yat-nav-menu">
               {% for item in site.data.navigation %}
               <li class="menu-item {% if item.subitems %}has-dropdown{% endif %}">
                 <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
