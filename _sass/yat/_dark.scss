@@ -1,5 +1,5 @@
-$dark-background-color:       #0e0e0e !default;
-$dark-text-color: #bbb !default;
+$dark-background-color:       #000 !default;
+$dark-text-color: #11 !default;
 
 html[data-theme="dark"]  {
   &[data-scroll-status='top'] {
@@ -93,6 +93,7 @@ html[data-theme="dark"]  {
   }
 
   .page-banner {
+    background-color: #000;
     .page-banner-img {
       & > *:first-child {
         opacity: 0.718;

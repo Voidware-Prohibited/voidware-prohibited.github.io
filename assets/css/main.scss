@@ -90,11 +90,6 @@ $content-width: {{ site.content_width | default: '920px' }};
   font-weight: 200;
 }
 
-.page-banner {
-  background-color: rgba(255,255,255,1)!important;
-  transition: height 0.2s;
-}
-
 /* Allow dropdown menus to extend below .site-header */
 .site-header {
   overflow: visible;
