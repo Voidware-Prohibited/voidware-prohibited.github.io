@@ -11,22 +11,19 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout full repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Push mirror to remote
+      - name: Clone bare repository and push mirror
         env:
-          MIRROR_URL: ${{ vars.MIRROR_URL }}     # e.g., https://codeberg.org
-          MIRROR_USER: ${{ vars.MIRROR_USER }}   # Your Codeberg/Forgejo username
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MIRROR_URL: ${{ vars.MIRROR_URL }}
+          MIRROR_USER: ${{ vars.MIRROR_USER }}
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
-          # Construct authenticated URL
+          # Clone a clean bare mirror from GitHub
+          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com{{ github.repository }}.git" repo.git
+          cd repo.git
+
+          # Construct authenticated destination URL
           AUTH_URL=$(echo "$MIRROR_URL" | sed "s|https://|https://${MIRROR_USER}:${MIRROR_TOKEN}@|")
-          
-          # Ensure all remote branches are tracked locally before mirroring
-          git fetch --prune origin "+refs/heads/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
-          
-          # Force-push exact mirror
+
+          # Force-push exact mirror to Codeberg / Forgejo
           git push --mirror "$AUTH_URL"
