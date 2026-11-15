@@ -1,6 +1,8 @@
 $dark-background-color:       #000 !default;
 $dark-text-color: #fff !default;
 
+$text-color: #fff;
+
 html[data-theme="dark"]  {
   &[data-scroll-status='top'] {
     header.site-header-transparent {
