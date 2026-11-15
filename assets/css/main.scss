@@ -76,23 +76,12 @@ $content-width: {{ site.content_width | default: '920px' }};
   text-underline-offset: 0.4em;
 }
 
-.yat-nav-item,
-.yat-dropdown-item {
-  > .nav-link {
-    color: $dark-text-color !important;
-  }
-}
-
 .navpath {
   border-top: 1px solid #dedede;
 }
 
 footer *{
   font-size: 11px;
-}
-
-.site-footer a{
-  color: $text-color!important;;
 }
 
 .footer-col ul li{

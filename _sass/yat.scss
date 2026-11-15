@@ -57,6 +57,15 @@ $on-laptop:        800px !default;
   font-size: $base-font-size * $ratio;
 }
 
+.site-nav .nav-link {
+    color: $text-color;
+  }
+}
+
+.site-footer a{
+  color: $text-color!important;
+}
+
 footer .footer-link {
   color: $text-color;
 }
