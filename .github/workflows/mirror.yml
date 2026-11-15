@@ -11,30 +11,12 @@ jobs:
   mirror:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone bare repository and push mirror
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPO: ${{ github.repository }}
-          MIRROR_URL: ${{ vars.MIRROR_URL }}
-          MIRROR_USER: ${{ vars.MIRROR_USER }}
-          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
-        run: |
-          set -e
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-          # Verify required variables are set
-          if [ -z "$MIRROR_URL" ] || [ -z "$MIRROR_USER" ] || [ -z "$MIRROR_TOKEN" ]; then
-            echo "Error: One or more MIRROR_* variables/secrets are empty."
-            exit 1
-          fi
-
-          # Clone bare mirror from GitHub
-          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com/{GITHUB_REPO}.git" repo.git
-          cd repo.git
-
-          # Safely configure credentials using git-credential-store (avoids special character issues in tokens/URLs)
-          git config credential.helper store
-          HOST=$(echo "$MIRROR_URL" | awk -F/ '{print $3}')
-          printf "https://%s:%s@%s\n" "$MIRROR_USER" "$MIRROR_TOKEN" "$HOST" > ~/.git-credentials
-
-          # Push all branches and tags, pruning deleted ones (ignores refs/pull/*)
-          git push --prune "$MIRROR_URL" "+refs/heads/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
+      - uses: roostorg/mirror@main
+        with:
+          destination: ${{ vars.MIRROR_URL }}
+          token_username: ${{ vars.MIRROR_USER }}
+          token: ${{ secrets.MIRROR_TOKEN }}
