@@ -57,6 +57,10 @@ $on-laptop:        800px !default;
   font-size: $base-font-size * $ratio;
 }
 
+footer .footer-link {
+  color: $text-color;
+}
+
 // Import partials.
 @import
   "yat/base",

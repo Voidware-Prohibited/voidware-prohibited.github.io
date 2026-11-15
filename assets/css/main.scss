@@ -76,6 +76,13 @@ $content-width: {{ site.content_width | default: '920px' }};
   text-underline-offset: 0.4em;
 }
 
+.yat-nav-item,
+.yat-dropdown-item {
+  > .nav-link {
+    color: $dark-text-color !important;
+  }
+}
+
 .navpath {
   border-top: 1px solid #dedede;
 }
@@ -157,7 +164,6 @@ footer *{
       margin: 0 !important;
       padding: 10px 4px;
       white-space: nowrap;
-      color: $text-color !important;
     }
   }
 
@@ -221,7 +227,6 @@ footer *{
       padding: 8px 16px !important;
       line-height: 1.4 !important;
       white-space: nowrap;
-      color: $text-color !important;
 
       &:hover {
         color: $brand-color !important;
@@ -310,7 +315,6 @@ footer *{
       justify-content: space-between;
       margin: 0 !important;
       padding: 8px 10px !important;
-      color: $text-color !important;
     }
   }
 
