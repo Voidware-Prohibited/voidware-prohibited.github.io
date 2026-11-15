@@ -48,8 +48,10 @@ $content-width: {{ site.content_width | default: '920px' }};
     transition: 0.1s filter color;
 
   }
+
   .site-favicon {
     transform: translateY(-4px);
+    height: 42.56px;
   }
 }
 
@@ -151,6 +153,7 @@ footer *{
       margin: 0 !important;
       padding: 10px 4px;
       white-space: nowrap;
+      color: $text-color !important;
     }
   }
 
