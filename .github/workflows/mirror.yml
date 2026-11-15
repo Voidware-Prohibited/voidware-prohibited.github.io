@@ -28,7 +28,7 @@ jobs:
           fi
 
           # Clone bare mirror from GitHub
-          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com{GITHUB_REPO}.git" repo.git
+          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com/{GITHUB_REPO}.git" repo.git
           cd repo.git
 
           # Safely configure credentials using git-credential-store (avoids special character issues in tokens/URLs)
