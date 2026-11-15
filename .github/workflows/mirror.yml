@@ -1,0 +1,32 @@
+name: Mirror to Forgejo / Codeberg
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+  delete:
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push mirror to remote
+        env:
+          MIRROR_URL: ${{ vars.MIRROR_URL }}     # e.g., https://codeberg.org
+          MIRROR_USER: ${{ vars.MIRROR_USER }}   # Your Codeberg/Forgejo username
+          MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          # Construct authenticated URL
+          AUTH_URL=$(echo "$MIRROR_URL" | sed "s|https://|https://${MIRROR_USER}:${MIRROR_TOKEN}@|")
+          
+          # Ensure all remote branches are tracked locally before mirroring
+          git fetch --prune origin "+refs/heads/*:refs/heads/*" "+refs/tags/*:refs/tags/*"
+          
+          # Force-push exact mirror
+          git push --mirror "$AUTH_URL"
