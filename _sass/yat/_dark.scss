@@ -89,9 +89,17 @@ html[data-theme="dark"]  {
     }
   }
 
+  .page-banner .page-banner-inner {
+    color: $dark-text-color !important;
+  }
+
   .site-footer {
-    color: #fff;
+    color: $dark-text-color;
     background-color: #000;
+  }
+
+  .site-footer .footer-link{
+    color: $dark-text-color;
   }
 
   .left-vsplit:before {
