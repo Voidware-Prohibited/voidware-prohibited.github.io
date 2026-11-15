@@ -14,12 +14,13 @@ jobs:
       - name: Clone bare repository and push mirror
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: ${{ github.repository }}
           MIRROR_URL: ${{ vars.MIRROR_URL }}
           MIRROR_USER: ${{ vars.MIRROR_USER }}
           MIRROR_TOKEN: ${{ secrets.MIRROR_TOKEN }}
         run: |
           # Clone a clean bare mirror from GitHub
-          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com{{ github.repository }}.git" repo.git
+          git clone --mirror "https://x-access-token:${GITHUB_TOKEN}@://github.com{GITHUB_REPO}.git" repo.git
           cd repo.git
 
           # Construct authenticated destination URL
