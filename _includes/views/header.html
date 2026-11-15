@@ -34,7 +34,7 @@
           <ul class="yat-nav-list">
             {%- for item in site.data.navigation -%}
             <li class="yat-nav-item{% if item.sublinks %} has-dropdown{% endif %}">
-              <a class="page-link" href="{{ item.url | relative_url }}">
+              <a class="nav-link" href="{{ item.url | relative_url }}">
                 <span>{{ item.title | escape }}</span>
                 {%- if item.sublinks -%}
                 <i class="fas fa-angle-down yat-caret" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
               <ul class="yat-dropdown">
                 {%- for subitem in item.sublinks -%}
                 <li class="yat-dropdown-item{% if subitem.sublinks %} has-dropdown{% endif %}">
-                  <a class="page-link" href="{{ subitem.url | relative_url }}">
+                  <a class="nav-link" href="{{ subitem.url | relative_url }}">
                     <span>{{ subitem.title | escape }}</span>
                     {%- if subitem.sublinks -%}
                     <i class="fas fa-angle-right yat-caret" aria-hidden="true"></i>
@@ -54,7 +54,7 @@
                   <ul class="yat-dropdown yat-sub-dropdown">
                     {%- for grandsub in subitem.sublinks -%}
                     <li class="yat-dropdown-item">
-                      <a class="page-link" href="{{ grandsub.url | relative_url }}">
+                      <a class="nav-link" href="{{ grandsub.url | relative_url }}">
                         <span>{{ grandsub.title | escape }}</span>
                       </a>
                     </li>
