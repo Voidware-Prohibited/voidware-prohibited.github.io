@@ -139,6 +139,10 @@ footer *{
     align-items: center;
   }
 
+  .site-header-inner {
+    display: inline-flex;
+  }
+
   .yat-nav-list {
     display: inline-flex !important;
     flex-direction: row !important;
@@ -248,13 +252,30 @@ footer *{
     border: 1px solid $grey-color-light !important;
     border-radius: 5px;
     z-index: 9999 !important;
+    display: none;
+  }
+
+  .nav-trigger-wrapper {
+    display: inline-flex;
   }
 
   /* Hide raw checkbox */
-  .site-nav .nav-trigger {
+  .nav-trigger-wrapper .nav-trigger {
     position: absolute;
-    opacity: 0;
-    pointer-events: none;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Show focus outline on the label when tabbing to the hidden checkbox */
+  #nav-trigger:focus-visible + .menu-icon {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
   }
 
   /* Force hamburger button and SVG icon to be visible */
@@ -285,16 +306,21 @@ footer *{
     }
   }
 
-  /* Toggle drawer visibility on hamburger click */
-  .site-nav .nav-trigger:not(:checked) ~ .trigger {
+/*  !* Toggle drawer visibility on hamburger click *!
+  .site-nav #nav-trigger:not(:checked) ~ .trigger {
     display: none !important;
   }
 
-  .site-nav .nav-trigger:checked ~ .trigger {
+  .site-nav #nav-trigger:checked ~ .trigger {
     display: block !important;
     min-width: 220px;
     padding: 8px 12px 12px;
     text-align: left;
+  }*/
+
+  /* Checked state: reveal the navigation menu */
+  #nav-trigger:checked ~ .site-nav {
+    display: block; /* Or flex, depending on your layout */
   }
 
   /* Vertical stacking for all menu levels */
