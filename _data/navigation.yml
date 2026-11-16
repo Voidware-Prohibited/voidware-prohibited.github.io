@@ -20,21 +20,28 @@
   subitems:
     - title: Target Vector
       url: /TargetVector/
+      subitems:
+        - title: Axos
+          url: /axos/
+        - title: Arcana
+          url: /arcana/
     - title: Aeon
-      url: /Aeon/
+      url: /aeon/
       subitems:
         - title: Astra
-          url: /Astra/
-    - title: Axos
-      url: /axos/
-    - title: Arcana
-      url: /arcana/
+          url: /astra/
+    - title: ALSXT
+      url: /alsxt/
+    - title: View All
+      url: /foss/
 - title: ASSETS
   url: "#"
   subitems:
     - title: Modular Buildings
       url: /modular/
     - title: Modular Streets
+      url: /modular/
+    - title: View All
       url: /modular/
 - title: TUTS
   url: "#"

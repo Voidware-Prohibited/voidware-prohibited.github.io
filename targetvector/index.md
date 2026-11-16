@@ -1,7 +1,7 @@
 ---
 layout: about
 title: "Target Vector"
-permalink: /TargetVector/
+permalink: /targetvector/
 ---
 
 Target Vector

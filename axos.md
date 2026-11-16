@@ -1,5 +1,5 @@
 ---
-layout: articles
+layout: about
 title: "Axos"
 permalink: /axos/
 ---
