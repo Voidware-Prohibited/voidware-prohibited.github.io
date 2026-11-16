@@ -37,6 +37,10 @@ $content-width: {{ site.content_width | default: '920px' }};
 
 @import "yat";
 
+.common-list ul li a {
+  color: black;
+}
+
 .site-brand {
   line-height: $header-height;
   margin-right: 50px;
@@ -51,7 +55,8 @@ $content-width: {{ site.content_width | default: '920px' }};
 
   .site-favicon {
     transform: translateY(-4px);
-    height: 42.56px;
+    height: 35px;
+    vertical-align: bottom;
   }
 }
 
