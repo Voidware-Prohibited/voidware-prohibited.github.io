@@ -33,26 +33,26 @@
         <div class="trigger">
           <ul class="yat-nav-list">
             {%- for item in site.data.navigation -%}
-            <li class="yat-nav-item{% if item.sublinks %} has-dropdown{% endif %}">
+            <li class="yat-nav-item{% if item.subitems %} has-dropdown{% endif %}">
               <a class="nav-link" href="{{ item.url | relative_url }}">
                 <span>{{ item.title | escape }}</span>
-                {%- if item.sublinks -%}
+                {%- if item.subitems -%}
                 <i class="fas fa-angle-down yat-caret" aria-hidden="true"></i>
                 {%- endif -%}
               </a>
-              {%- if item.sublinks -%}
+              {%- if item.subitems -%}
               <ul class="yat-dropdown">
-                {%- for subitem in item.sublinks -%}
-                <li class="yat-dropdown-item{% if subitem.sublinks %} has-dropdown{% endif %}">
+                {%- for subitem in item.subitems -%}
+                <li class="yat-dropdown-item{% if subitem.subitems %} has-dropdown{% endif %}">
                   <a class="nav-link" href="{{ subitem.url | relative_url }}">
                     <span>{{ subitem.title | escape }}</span>
-                    {%- if subitem.sublinks -%}
+                    {%- if subitem.subitems -%}
                     <i class="fas fa-angle-right yat-caret" aria-hidden="true"></i>
                     {%- endif -%}
                   </a>
-                  {%- if subitem.sublinks -%}
+                  {%- if subitem.subitems -%}
                   <ul class="yat-dropdown yat-sub-dropdown">
-                    {%- for grandsub in subitem.sublinks -%}
+                    {%- for grandsub in subitem.subitems -%}
                     <li class="yat-dropdown-item">
                       <a class="nav-link" href="{{ grandsub.url | relative_url }}">
                         <span>{{ grandsub.title | escape }}</span>

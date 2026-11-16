@@ -19,14 +19,12 @@
   url: "#"
   subitems:
     - title: Target Vector
-    - url: /tutorials/
+    - url: /TargetVector/
     - title: Aeon
-      url: /guides/
+      url: /Aeon/
       subitems:
         - title: Astra
-          url: /guides/jekyll-setup/
-        - title: Theme Styling
-          url: /guides/styling/
+          url: /Astra/
     - title: Axos
       url: /axos/
     - title: Arcana
@@ -42,8 +40,8 @@
   url: "#"
   subitems:
     - title: Unreal Engine
-      url: /modular/
+      url: /ue/
     - title: Ableton Live/MAX 4 Live
-      url: /modular/
+      url: /live/
 - title: CHROME RONIN
   url: https://chromeronin.voidwarex.com
