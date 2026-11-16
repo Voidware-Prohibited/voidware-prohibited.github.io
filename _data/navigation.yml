@@ -19,7 +19,7 @@
   url: "#"
   subitems:
     - title: Target Vector
-      url: /TargetVector/
+      url: /targetvector/
       subitems:
         - title: Axos
           url: /axos/
@@ -43,12 +43,12 @@
       url: /modular/
     - title: View All
       url: /modular/
-- title: TUTS
+- title: TUT
   url: "#"
   subitems:
     - title: Unreal Engine
-      url: /ue/
+      url: tut/ue/
     - title: Ableton Live/MAX 4 Live
-      url: /live/
+      url: tut/live/
 - title: CHROME RONIN
   url: https://chromeronin.voidwarex.com
