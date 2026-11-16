@@ -19,7 +19,7 @@
   url: "#"
   subitems:
     - title: Target Vector
-    - url: /TargetVector/
+      url: /TargetVector/
     - title: Aeon
       url: /Aeon/
       subitems:
