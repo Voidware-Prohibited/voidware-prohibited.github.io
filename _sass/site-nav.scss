@@ -71,7 +71,7 @@
   .yat-dropdown {
     display: none !important;
     position: absolute !important;
-    top: 100%;
+    top: 70%;
     left: 0;
     min-width: 200px;
     padding: 6px 0 !important;
@@ -163,6 +163,42 @@
     outline: 2px solid currentColor;
     outline-offset: 2px;
   }
+
+  /* Submenus fly out to the right of their parent item */
+  .yat-dropdown {
+    display: none !important;
+    position: absolute !important;
+    top: -1px !important;
+    left: 100% !important;
+    min-width: 180px;
+    padding: 6px 0 !important;
+    margin-left: 2px !important;
+    background-color: $background-color !important;
+    border: 1px solid $grey-color-light !important;
+    border-radius: 5px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10000 !important;
+
+    /* Invisible bridge so cursor does not lose hover moving right */
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -10px;
+      width: 10px;
+      height: 100%;
+      background: transparent;
+    }
+  }
+
+  /* Open submenu on mouse hover, tap/focus, or JS .is-open toggle */
+  .has-dropdown:hover > .yat-dropdown,
+  .has-dropdown:focus-within > .yat-dropdown,
+  .has-dropdown.is-open > .yat-dropdown {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
 
   /* Force hamburger button and SVG icon to be visible */
   .nav-trigger-wrapper label[for="nav-trigger"] {
