@@ -139,10 +139,6 @@ footer *{
     align-items: center;
   }
 
-  .site-header-inner {
-    display: inline-flex;
-  }
-
   .yat-nav-list {
     display: inline-flex !important;
     flex-direction: row !important;
@@ -256,6 +252,10 @@ footer *{
   }
 
   .nav-trigger-wrapper {
+    display: inline-flex;
+  }
+
+  .site-header-inner {
     display: inline-flex;
   }
 
