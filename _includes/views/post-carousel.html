@@ -1,20 +1,235 @@
 {% assign limit_num = include.limit | default: 5 %}
+{% assign slide_delay = include.delay | default: 5000 %}
 {% assign recent_posts = site.posts | limit: limit_num %}
 
-<div class="post-carousel-banner">
-    <div class="carousel-inner">
+{% if recent_posts.size > 0 %}
+<div class="post-carousel" data-delay="{{ slide_delay }}">
+    <div class="carousel-track">
         {% for post in recent_posts %}
-        <div class="carousel-slide {% if forloop.first %}active{% endif %}">
-            <a href="{{ post.url | relative_url }}">
+        <div class="carousel-slide {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+            <a href="{{ post.url | relative_url }}" class="slide-link">
                 {% if post.image %}
-                <img src="{{ post.image | relative_url }}" alt="{{ post.title }}" />
+                <img src="{{ post.image | relative_url }}" alt="{{ post.title | escape }}" />
+                {% else %}
+                <div class="slide-fallback-bg"></div>
                 {% endif %}
                 <div class="carousel-caption">
                     <h2>{{ post.title }}</h2>
-                    <p>{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+                    <p>{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
                 </div>
             </a>
         </div>
         {% endfor %}
     </div>
+
+    {% if recent_posts.size > 1 %}
+    <button class="carousel-arrow carousel-prev" aria-label="Previous slide">&#10094;</button>
+    <button class="carousel-arrow carousel-next" aria-label="Next slide">&#10095;</button>
+
+    <div class="carousel-dots">
+        {% for post in recent_posts %}
+        <button class="carousel-dot {% if forloop.first %}active{% endif %}"
+                data-index="{{ forloop.index0 }}"
+                aria-label="Go to slide {{ forloop.index }}"></button>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
+
+<style>
+    .post-carousel {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #1a1a1a;
+    }
+
+    .carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .carousel-slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    }
+
+    .carousel-slide.active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+    }
+
+    .slide-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+    .carousel-slide img,
+    .slide-fallback-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .slide-fallback-bg {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    }
+
+    .carousel-caption {
+        position: absolute;
+        inset: auto 0 0 0;
+        padding: 40px 60px 45px;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+        text-align: left;
+    }
+
+    .carousel-caption h2 {
+        margin: 0 0 8px;
+        font-size: 1.75rem;
+        color: #ffffff;
+    }
+
+    .carousel-caption p {
+        margin: 0;
+        font-size: 1rem;
+        color: #e0e0e0;
+    }
+
+    /* Left and Right Arrows */
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        background: rgba(0, 0, 0, 0.45);
+        color: #ffffff;
+        border: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+    }
+
+    .carousel-arrow:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .carousel-prev {
+        left: 16px;
+    }
+
+    .carousel-next {
+        right: 16px;
+    }
+
+    /* Center Bottom White Dots */
+    .carousel-dots {
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        gap: 10px;
+    }
+
+    .carousel-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        border: none;
+        padding: 0;
+        background: rgba(255, 255, 255, 0.45);
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .carousel-dot.active,
+    .carousel-dot:hover {
+        background: #ffffff;
+        transform: scale(1.2);
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".post-carousel").forEach(function (carousel) {
+            const slides = carousel.querySelectorAll(".carousel-slide");
+            const dots = carousel.querySelectorAll(".carousel-dot");
+            const prevBtn = carousel.querySelector(".carousel-prev");
+            const nextBtn = carousel.querySelector(".carousel-next");
+            const delay = parseInt(carousel.dataset.delay, 10) || 5000;
+
+            if (slides.length <= 1) return;
+
+            let currentIndex = 0;
+            let timer = null;
+
+            function goToSlide(index) {
+                // Modulo math ensures cyclic wrapping in both directions
+                currentIndex = (index + slides.length) % slides.length;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("active", i === currentIndex);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentIndex);
+                });
+            }
+
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+
+            function resetTimer() {
+                clearInterval(timer);
+                timer = setInterval(nextSlide, delay);
+            }
+
+            prevBtn.addEventListener("click", function () {
+                prevSlide();
+                resetTimer();
+            });
+
+            nextBtn.addEventListener("click", function () {
+                nextSlide();
+                resetTimer();
+            });
+
+            dots.forEach(function (dot) {
+                dot.addEventListener("click", function () {
+                    const targetIndex = parseInt(dot.dataset.index, 10);
+                    goToSlide(targetIndex);
+                    resetTimer();
+                });
+            });
+
+            // Pause auto-rotation when hovering over the banner
+            carousel.addEventListener("mouseenter", () => clearInterval(timer));
+            carousel.addEventListener("mouseleave", resetTimer);
+
+            resetTimer();
+        });
+    });
+</script>
+{% endif %}
