@@ -15,6 +15,19 @@
   padding: 0 !important;
 }
 
+/* Hide raw checkbox */
+.site-header-inner .nav-trigger {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* =========================================================
    DESKTOP (> 800px): Horizontal Bar + Working Hover Submenus
    ========================================================= */
@@ -143,19 +156,6 @@
 
   .nav-trigger-wrapper {
     display: inline-flex;
-  }
-
-  /* Hide raw checkbox */
-  .site-header-inner .nav-trigger {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
   }
 
   /* Show focus outline on the label when tabbing to the hidden checkbox */
