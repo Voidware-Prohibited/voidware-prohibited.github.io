@@ -13,20 +13,24 @@
       url: /dev/
     - title: Operations
       url: /operations/
+- title: BLOG
+  url: /blog/
 - title: FOSS
   url: "#"
   subitems:
     - title: Target Vector
     - url: /tutorials/
-    - title: Target Vector
+    - title: Aeon
       url: /guides/
       subitems:
-        - title: Jekyll Setup
+        - title: Astra
           url: /guides/jekyll-setup/
         - title: Theme Styling
           url: /guides/styling/
-    - title: Tutorials
-      url: /tutorials/
+    - title: Axos
+      url: /axos/
+    - title: Arcana
+      url: /arcana/
 - title: ASSETS
   url: "#"
   subitems:
