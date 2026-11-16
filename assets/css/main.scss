@@ -251,7 +251,7 @@ footer *{
   }
 
   /* Hide raw checkbox */
-  .nav-trigger-wrapper .nav-trigger {
+  .site-nav .nav-trigger {
     position: absolute;
     opacity: 0;
     pointer-events: none;
@@ -268,7 +268,7 @@ footer *{
     cursor: pointer;
   }
 
-  .nav-trigger-wrapper .menu-icon {
+  .site-nav .menu-icon {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -286,11 +286,11 @@ footer *{
   }
 
   /* Toggle drawer visibility on hamburger click */
-  .nav-trigger-wrapper .nav-trigger:not(:checked) ~ .trigger {
+  .site-nav .nav-trigger:not(:checked) ~ .trigger {
     display: none !important;
   }
 
-  .nav-trigger-wrapper .nav-trigger:checked ~ .trigger {
+  .site-nav .nav-trigger:checked ~ .trigger {
     display: block !important;
     min-width: 220px;
     padding: 8px 12px 12px;
