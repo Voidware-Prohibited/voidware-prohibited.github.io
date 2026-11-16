@@ -37,7 +37,7 @@
               <a class="nav-link" href="{{ item.url | relative_url }}">
                 <span>{{ item.title | escape }}</span>
                 {%- if item.subitems -%}
-                <i class="fas fa-angle-down yat-caret" aria-hidden="true"></i>
+                <i class="fas fa-caret-down yat-caret" aria-hidden="true"></i>
                 {%- endif -%}
               </a>
               {%- if item.subitems -%}
@@ -47,7 +47,7 @@
                   <a class="nav-link" href="{{ subitem.url | relative_url }}">
                     <span>{{ subitem.title | escape }}</span>
                     {%- if subitem.subitems -%}
-                    <i class="fas fa-angle-right yat-caret" aria-hidden="true"></i>
+                    <i class="fas fa-caret-right yat-caret" aria-hidden="true"></i>
                     {%- endif -%}
                   </a>
                   {%- if subitem.subitems -%}
