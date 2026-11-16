@@ -1,5 +1,5 @@
 ---
-layout: articles
+layout: post
 title: "License"
 permalink: /license/
 ---
