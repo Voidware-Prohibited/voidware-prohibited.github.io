@@ -240,8 +240,10 @@ footer *{
 @media screen and (max-width: 800px) {
   .site-nav {
     position: absolute !important;
-    top: 12px;
-    right: 15px;
+    top: 48px;
+    left: 0px;
+    width: fit-content;
+    line-height: 32px;
     background-color: $background-color !important;
     border: 1px solid $grey-color-light !important;
     border-radius: 5px;
@@ -249,14 +251,14 @@ footer *{
   }
 
   /* Hide raw checkbox */
-  .site-nav .nav-trigger {
+  .nav-trigger-wrapper .nav-trigger {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
   /* Force hamburger button and SVG icon to be visible */
-  .site-nav label[for="nav-trigger"] {
+  .nav-trigger-wrapper label[for="nav-trigger"] {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -266,7 +268,7 @@ footer *{
     cursor: pointer;
   }
 
-  .site-nav .menu-icon {
+  .nav-trigger-wrapper .menu-icon {
     display: flex !important;
     align-items: center;
     justify-content: center;
@@ -284,11 +286,11 @@ footer *{
   }
 
   /* Toggle drawer visibility on hamburger click */
-  .site-nav .nav-trigger:not(:checked) ~ .trigger {
+  .nav-trigger-wrapper .nav-trigger:not(:checked) ~ .trigger {
     display: none !important;
   }
 
-  .site-nav .nav-trigger:checked ~ .trigger {
+  .nav-trigger-wrapper .nav-trigger:checked ~ .trigger {
     display: block !important;
     min-width: 220px;
     padding: 8px 12px 12px;
