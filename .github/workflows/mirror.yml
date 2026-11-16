@@ -19,7 +19,7 @@ jobs:
       - name: Mirror repository to Codeberg
         uses: yesolutions/mirror-action@v0.7.0
         with:
-          REMOTE: https://codeberg.org${{ vars.MIRROR_USER }}/${{ vars.MIRROR_REPO }}.git
+          REMOTE: https://codeberg.org/${{ vars.MIRROR_REPO }}.git
           GIT_USERNAME: ${{ vars.MIRROR_USER }}
           GIT_PASSWORD: ${{ secrets.MIRROR_TOKEN }}
           GIT_PUSH_ARGS: --tags --force --prune
