@@ -2,37 +2,24 @@ name: Mirror to Codeberg
 
 on:
   push:
-    branches:
-      - '**'
-    tags:
-      - '**'
+    branches: ["**"]
+    tags: ["**"]
   delete:
   workflow_dispatch:
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
     steps:
-      - name: Bare clone from GitHub
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git clone --bare "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo.git
+      - name: Checkout full repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Configure Codeberg credentials
-        env:
-          CODEBERG_USER: ${{ vars.MIRROR_USER }}
-          CODEBERG_TOKEN: ${{ secrets.MIRROR_TOKEN }}
-        run: |
-          git config --global credential.helper store
-          printf "protocol=https\nhost=codeberg.org\nusername=%s\npassword=%s\n\n" "$CODEBERG_USER" "$CODEBERG_TOKEN" | git credential approve
-
-      - name: Push branches and tags to Codeberg
-        working-directory: repo.git
-        run: |
-          git push --prune "https://codeberg.org/${{ github.repository }}.git" \
-            "+refs/heads/*:refs/heads/*" \
-            "+refs/tags/*:refs/tags/*"
+      - name: Mirror repository to Codeberg
+        uses: yesolutions/mirror-action@v0.7.0
+        with:
+          REMOTE: https://codeberg.org{{ vars.MIRROR_USER }}/${{ vars.MIRROR_REPO }}.git
+          GIT_USERNAME: ${{ vars.MIRROR_USER }}
+          GIT_PASSWORD: ${{ secrets.MIRROR_TOKEN }}
+          GIT_PUSH_ARGS: --tags --force --prune
