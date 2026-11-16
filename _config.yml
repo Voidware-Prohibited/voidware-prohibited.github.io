@@ -19,8 +19,6 @@
 # in the templates via {{ site.myvariable }}.
 
 title: VOIDWARE Prohibited
-wiki-title: Arcana Wiki
-docs-title: Documentation
 email: contact@voidwarex.com
 author: Uriel Ballinas, VOIDWARE Prohibited
 copyright: "Copyright © 2016-{currentYear} {author}"
@@ -28,8 +26,6 @@ description: CREATIVE Destruction
 domain: voidware-prohibited.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://voidwarex.com  # the base hostname and protocol for your site, e.g. http://example.com
 baseurl:       # place folder name if the site is served in a subfolder
-wiki-baseurl: /wiki
-docs-baseurl: /docs
 twitter_username: voidwarex
 codeberg_username: Voidware-Prohibited
 github_username:  Voidware-Prohibited
@@ -56,17 +52,19 @@ icon_filename: icon.png
 #
 brand_color: #903fff
 
-# You can custom selection style
+# You can customize selection style
 # selection:
 #   color: "#ff00ff"
 #   background_color: "yellow"
 
-# Page default value
 defaults:
- home:
-   heading: "MAKE MAGIC"
-   subheading: "Materialize Interactivity"
-   banner: "Your image url"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      permalink: /blog/:title/
+
 
 
 # Build settings
@@ -81,17 +79,8 @@ plugins:
   - jekyll-paginate
   - jekyll-spaceship
 
-defaults:
-  - scope:
-      path: "wiki" # Path relative to root
-    values:
-      layout: "wiki"
-      on_feed: false
-
 header_pages:
   - about.md
-  - wiki.md
-  - docs.md
   - license.md
 
 # Exclude from processing.
