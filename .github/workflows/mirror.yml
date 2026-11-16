@@ -1,22 +1,38 @@
-name: Mirror to Forgejo / Codeberg
+name: Mirror to Codeberg
 
 on:
   push:
-    branches: ['**']
-    tags: ['**']
+    branches:
+      - '**'
+    tags:
+      - '**'
   delete:
   workflow_dispatch:
 
 jobs:
   mirror:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    permissions:
+      contents: read
 
-      - uses: roostorg/mirror@main
-        with:
-          destination: ${{ vars.MIRROR_URL }}
-          token_username: ${{ vars.MIRROR_USER }}
-          token: ${{ secrets.MIRROR_TOKEN }}
+    steps:
+      - name: Bare clone from GitHub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git clone --bare "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" repo.git
+
+      - name: Configure Codeberg credentials
+        env:
+          CODEBERG_USER: ${{ vars.MIRROR_USER }}
+          CODEBERG_TOKEN: ${{ secrets.MIRROR_TOKEN }}
+        run: |
+          git config --global credential.helper store
+          printf "protocol=https\nhost=codeberg.org\nusername=%s\npassword=%s\n\n" "$CODEBERG_USER" "$CODEBERG_TOKEN" | git credential approve
+
+      - name: Push branches and tags to Codeberg
+        working-directory: repo.git
+        run: |
+          git push --prune "https://codeberg.org/${{ github.repository }}.git" \
+            "+refs/heads/*:refs/heads/*" \
+            "+refs/tags/*:refs/tags/*"
