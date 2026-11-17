@@ -1,0 +1,9 @@
+- title: RSS
+  url: /
+  target: _self
+- title: CONTACT
+  url: /contact/
+  target: _self
+- title: PRIVACY
+  url: /privacy/
+  target: _self

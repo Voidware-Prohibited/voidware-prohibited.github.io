@@ -2,92 +2,134 @@
   url: /
 - title: NFO
   url: "#"
+  target: _self
   subitems:
     - title: About
       url: /about/
+      target: _self
     - title: Consultation
       url: /consultation/
+      target: _self
     - title: Live Experiences
       url: /live/
+      target: _self
     - title: Development
       url: /dev/
+      target: _self
     - title: Operations
       url: /operations/
+      target: _self
 - title: BLOG
   url: /blog/
+  target: _self
 - title: FOSS
   url: "#"
+  target: _self
   subitems:
     - title: Target Vector
       url: /targetvector/
+      target: _self
       subitems:
         - title: Arcana
           url: /arcana/
+          target: _self
         - title: Archon
           url: /archon/
+          target: _self
         - title: Arsenal
           url: /arsenal/
+          target: _self
         - title: Aurora
           url: /aurora/
+          target: _self
         - title: Axos
           url: /axos/
+          target: _self
         - title: Choros
           url: /choros/
+          target: _self
         - title: Chronos
           url: /chronos/
+          target: _self
         - title: Clima
           url: /clima/
+          target: _self
         - title: Echelon
           url: /axos/
+          target: _self
         - title: Exemplar
           url: /exemplar/
+          target: _self
         - title: Helios
           url: /helios/
+          target: _self
         - title: Kairos
           url: /axos/
+          target: _self
         - title: Travos
           url: /travos/
+          target: _self
         - title: Ricochet
           url: /ricochet/
+          target: _self
     - title: Aeon
       url: /aeon/
+      target: _self
       subitems:
         - title: Astra
           url: /astra/
+          target: _self
         - title: Aspira
           url: /aspira/
+          target: _self
           subitems:
             - title: Abraxas
               url: /abraxas/
+              target: _self
             - title: Aevus
               url: /aevus/
+              target: _self
         - title: Aura
           url: /aura/
+          target: _self
         - title: Anima
           url: /anima/
+          target: _self
     - title: ALSXT
       url: /alsxt/
+      target: _self
     - title: Alchemy
       url: /alchemy/
+      target: _self
     - title: View All
       url: /foss/
+      target: _self
 - title: ASSETS
   url: "#"
+  target: _self
   subitems:
     - title: Modular Buildings
       url: /assets/modular-buildings/
+      target: _self
     - title: Modular Streets
       url: /assets/modular-streets/
+      target: _self
     - title: Modular Office
       url: /assets/modular-office/
+      target: _self
     - title: View All
       url: /assets/
+      target: _self
 - title: TUT
   url: "#"
+  target: _self
   subitems:
     - title: Unreal Engine
       url: tut/ue/
+      target: _self
     - title: Ableton Live/MAX 4 Live
       url: tut/live/
+      target: _self
 - title: CHROME RONIN
   url: https://chromeronin.voidwarex.com
+  target: _self
