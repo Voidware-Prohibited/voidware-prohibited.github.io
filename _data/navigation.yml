@@ -21,28 +21,67 @@
     - title: Target Vector
       url: /targetvector/
       subitems:
-        - title: Axos
-          url: /axos/
         - title: Arcana
           url: /arcana/
+        - title: Archon
+          url: /archon/
+        - title: Arsenal
+          url: /arsenal/
+        - title: Aurora
+          url: /aurora/
+        - title: Axos
+          url: /axos/
+        - title: Choros
+          url: /choros/
+        - title: Chronos
+          url: /chronos/
+        - title: Clima
+          url: /clima/
+        - title: Echelon
+          url: /axos/
+        - title: Exemplar
+          url: /exemplar/
+        - title: Helios
+          url: /helios/
+        - title: Kairos
+          url: /axos/
+        - title: Travos
+          url: /travos/
+        - title: Ricochet
+          url: /ricochet/
     - title: Aeon
       url: /aeon/
       subitems:
         - title: Astra
           url: /astra/
+        - title: Aspira
+          url: /aspira/
+          subitems:
+            - title: Abraxas
+              url: /abraxas/
+            - title: Aevus
+              url: /aevus/
+        - title: Aura
+          url: /aura/
+        - title: Anima
+          url: /anima/
     - title: ALSXT
       url: /alsxt/
+    - title: Alchemy
+      url: /alchemy/
     - title: View All
       url: /foss/
 - title: ASSETS
   url: "#"
   subitems:
     - title: Modular Buildings
-      url: /modular/
+      url: /assets/modular-buildings/
     - title: Modular Streets
-      url: /modular/
+      url: /assets/modular-streets/
+    - title: Modular Office
+      url: /assets/modular-office/
     - title: View All
-      url: /modular/
+      url: /assets/
 - title: TUT
   url: "#"
   subitems:
