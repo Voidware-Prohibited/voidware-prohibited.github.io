@@ -9,7 +9,7 @@
                       <a class="footer-link" href="{{ "/feed.xml" | relative_url }}">RSS</a>&nbsp;
                       <a class="footer-link" href="/contact">CONTACT</a>&nbsp;
                       <a class="footer-link" href="/privacy">PRIVACY</a>&nbsp;
-                      {%- for item in site.data.navigation -%}
+                      {%- for item in site.data.footer-links -%}
                         <a class="footer-link" href="{{ item.url | relative_url }}" target="{{ item.target }}">{{ item.title | escape }}</a>&nbsp;
                       {%- endfor -%}
                   </div>
@@ -18,7 +18,7 @@
                       <a class="footer-link" aria-label="Dev" href="https://dev.to/voidware-prohibited"><i class="fa-brands fa-dev" title="Dev"></i></a> &nbsp;
                       <a class="footer-link" aria-label="Codeberg" href="https://codeberg.org/Voidware-Prohibited"><i class="fa-brands fa-codeberg" title="Codeberg"></i></a> &nbsp;
                       <a class="footer-link" aria-label="GitHub" href="https://github.com/Voidware-Prohibited"><i class="fa-brands fa-github" title="GitHub"></i></a>
-                      {%- for item in site.data.navigation -%}
+                      {%- for item in site.data.social-links -%}
                         <a class="footer-link" href="{{ item.url | relative_url }}" target="{{ item.target }}"><i class="{{ item.icon | escape }}" title="{{ item.title | escape }}" role="img" aria-label="{{ item.title | escape }}"></i></a>
                       {%- endfor -%}
                   </div>
