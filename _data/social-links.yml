@@ -1,0 +1,16 @@
+- title: Twitter
+  icon: fa-brands fa-twitter
+  url: https://x.com/voidwarex
+  target: _blank
+- title: Dev
+  icon: fa-brands fa-dev
+  url: https://dev.to/voidware-prohibited
+  target: _blank
+- title: Codeberg
+  icon: fa-brands fa-codeberg
+  url: https://codeberg.org/Voidware-Prohibited
+  target: _blank
+- title: GitHub
+  icon: a-brands fa-github
+  url: https://github.com/Voidware-Prohibited
+  target: _blank
