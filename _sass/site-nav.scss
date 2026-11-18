@@ -17,7 +17,7 @@
 
 .yat-nav-item:hover {
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 8px;
 }
 
 /* Hide raw checkbox */
@@ -35,6 +35,7 @@
 
 .yat-caret {
   font-size: 10px;
+  text-decoration: none;
 }
 
 .yat-caret.top-menu{
@@ -85,7 +86,7 @@
   .yat-dropdown {
     display: none !important;
     position: absolute !important;
-    top: 70%;
+    top: 100%;
     left: 0;
     min-width: 200px;
     padding: 6px 0 !important;
@@ -144,7 +145,7 @@
 
       &:hover {
         text-decoration: underline;
-        text-underline-offset: 4px;
+        text-underline-offset: 8px;
       }
     }
   }
