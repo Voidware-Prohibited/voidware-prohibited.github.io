@@ -7,12 +7,12 @@
               <div class="footer-col" style="float: left; width: 50%;">
                   <div>
                       {%- for item in site.data.footer-links -%}
-                        <a class="footer-link" href="{{ item.url | relative_url }}" target="{{ item.target }}">{{ item.title | escape }}</a>&nbsp;
+                        <a href="{{ item.url | relative_url }}" class="footer-link" target="{{ item.target }}">{{ item.title | escape }}</a>&nbsp;
                       {%- endfor -%}
                   </div>
                   <div>
                       {%- for item in site.data.social-links -%}
-                        <a class="footer-social-link" href="{{ item.url | relative_url }}" target="{{ item.target }}"><i class="{{ item.icon | escape }}" title="{{ item.title | escape }}" role="img" aria-label="{{ item.title | escape }}"></i></a>&nbsp;
+                        <a href="{{ item.url | relative_url }}" class="footer-link" target="{{ item.target }}"><i class="{{ item.icon | escape }}" title="{{ item.title | escape }}" role="img" aria-label="{{ item.title | escape }}"></i></a>&nbsp;
                       {%- endfor -%}
                   </div>
                 </div>
