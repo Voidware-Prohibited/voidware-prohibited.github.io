@@ -1,6 +1,10 @@
+{%- if site.display_header_logo -%}
 <a class="site-brand-logo" rel="author" href="{{ "/" | relative_url }}">
   <img class="site-favicon" title="{{ site.title | escape }}" src="/assets/images/{{ site.glyph_filename }}" onerror="this.style.display='none'" alt="{{ site.title | escape }}">
 </a>
-<a class="site-brand-inner" rel="author" href="{{ "/" | relative_url }}" style="display: none;">
+{%- endif -%}
+{%- if site.display_header_title -%}
+<a class="site-brand-inner" rel="author" href="{{ "/" | relative_url }}">
   {{ site.title | escape }}
 </a>
+{%- endif -%}
