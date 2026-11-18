@@ -15,6 +15,11 @@
   padding: 0 !important;
 }
 
+.yat-nav-item:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* Hide raw checkbox */
 .site-header-inner .nav-trigger {
   position: absolute;
@@ -138,8 +143,8 @@
       white-space: nowrap;
 
       &:hover {
-        color: $brand-color !important;
-        background-color: rgba(128, 128, 128, 0.12);
+        text-decoration: underline;
+        text-underline-offset: 4px;
       }
     }
   }
@@ -207,7 +212,6 @@
     display: flex !important;
     flex-direction: column !important;
   }
-
 
   /* Force hamburger button and SVG icon to be visible */
   .nav-trigger-wrapper label[for="nav-trigger"] {
