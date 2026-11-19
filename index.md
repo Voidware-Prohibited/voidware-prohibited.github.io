@@ -3,7 +3,9 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-banner:
-  classname: "logo-splash"
-banner_classname: logo-splash
+heading: ''
+subheading: ''
+banner: '/assets/images/logo.png'
+banner_background: '/assets/images/logo.png'
+banner_classname: "logo-splash"
 ---
