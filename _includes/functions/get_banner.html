@@ -17,6 +17,11 @@
 {%- include functions.html func='get_value' -%}
 {% assign banner_background = return %}
 
+{%- include functions.html func='log' level='debug' msg='Get banner_classname value' -%}
+{% assign name = 'banner.classname' %}
+{%- include functions.html func='get_value' -%}
+{% assign banner_classname = return %}
+
 {%- include functions.html func='log' level='debug' msg='Get banner_opacity value' -%}
 {% assign name = 'banner.opacity' %}
 {%- include functions.html func='get_value' -%}
