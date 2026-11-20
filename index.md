@@ -7,5 +7,5 @@ heading: ''
 subheading: ''
 banner: '/assets/images/logo.png'
 banner_background: '/assets/images/logo.png'
-banner_classname: "logo-splash"
+banner_classname: 'logo-splash'
 ---
