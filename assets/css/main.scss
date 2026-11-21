@@ -37,6 +37,10 @@ $content-width: {{ site.content_width | default: '920px' }};
 
 @import "yat";
 
+.site-footer {
+  background-color: $background-color;
+}
+
 .common-list ul li a {
   color: black;
 }
