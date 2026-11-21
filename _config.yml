@@ -68,6 +68,7 @@ defaults:
     values:
       layout: "post"
       permalink: /blog/:year/:title/
+      toc: false
 
 
 
