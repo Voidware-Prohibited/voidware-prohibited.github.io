@@ -46,6 +46,24 @@ $content-width: {{ site.content_width | default: '920px' }};
   z-index: 99;
 }
 
+project-wrapper {
+  position: relative;
+}
+
+.project-wrapper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, fuchsia, #0f172a);
+  pointer-events: none;
+}
+
+.project-inner {
+  position: relative;
+  z-index: 1;
+}
+
 html {
   &[data-scroll-status='down'] {
     header.site-header {
