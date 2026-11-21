@@ -1,6 +1,7 @@
 ---
 layout: about
 toc: false
+sidebar: []
 title: "Target Vector"
 permalink: /targetvector/
 ---
