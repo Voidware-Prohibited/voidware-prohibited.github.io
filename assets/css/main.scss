@@ -37,8 +37,13 @@ $content-width: {{ site.content_width | default: '920px' }};
 
 @import "yat";
 
+.site-header {
+  background-color: transparent;
+}
+
 .site-footer {
-  background-color: $background-color;
+  background-color: transparent;
+  z-index: 99;
 }
 
 html {
