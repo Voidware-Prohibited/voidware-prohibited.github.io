@@ -41,11 +41,14 @@ $content-width: {{ site.content_width | default: '920px' }};
   background-color: $background-color;
 }
 
-&[data-scroll-status='down'] {
-  header.site-header {
-    top: 0;
+html {
+  &[data-scroll-status='down'] {
+    header.site-header {
+      top: 0;
+    }
   }
 }
+
 
 .common-list ul li a {
   color: black;
