@@ -12,15 +12,6 @@
   {% assign banner_image = banner | relative_url %}
 {%- endif -%}
 
-{%- if banner.first -%}
-{%- include functions.html func='log' level='debug' msg='Get banner_classname value' -%}
-{% assign name = 'banner.classname' %}
-{%- include functions.html func='get_value' -%}
-{% assign banner_classname = return %}
-{%- else -%}
-{% assign banner_classname = banner %}
-{%- endif -%}
-
 {%- include functions.html func='log' level='debug' msg='Get banner_classname value' -%}
 {% assign name = 'banner.classname' %}
 {%- include functions.html func='get_value' -%}
