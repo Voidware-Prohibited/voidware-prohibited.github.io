@@ -14,7 +14,7 @@
 {% assign subheading = return %}
 
 {%- include functions.html func='get_banner' -%}
-{%- assign banner_class = banner.class | default: page.banner_class | default: include.class -%}
+{%- assign banner_classname = banner.classname | default: page.banner_classname | default: include.classname -%}
 
 {%- if has_banner -%}
   {%- if banner_background -%}
