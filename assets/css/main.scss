@@ -46,22 +46,24 @@ $content-width: {{ site.content_width | default: '920px' }};
   z-index: 99;
 }
 
-project-wrapper {
+.project-splash-wrapper {
   position: relative;
 }
 
-.project-wrapper::before {
+.project-splash-wrapper::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(135deg, fuchsia, #0f172a);
   pointer-events: none;
 }
 
-.project-inner {
-  position: relative;
-  z-index: 1;
+.project-splash-bottom {
+  margin-top: auto;
+}
+
+.project-splash-wrapper.targetvector::before {
+  background: linear-gradient(135deg, fuchsia, #0f172a);
 }
 
 html {
