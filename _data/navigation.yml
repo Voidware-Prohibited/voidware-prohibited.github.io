@@ -10,14 +10,14 @@
     - title: Consultation
       url: /consultation/
       target: _self
-    - title: Live Experiences
-      url: /live/
-      target: _self
     - title: Development
       url: /dev/
       target: _self
     - title: Operations
-      url: /operations/
+      url: /devops/
+      target: _self
+    - title: Contact
+      url: /contact/
       target: _self
 - title: BLOG
   url: /blog/
